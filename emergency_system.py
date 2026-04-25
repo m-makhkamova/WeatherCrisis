@@ -1,21 +1,22 @@
 class EmergencySystem:
-    shelters = []
-    requests_queue = []
-    assignments = []
+    def __init__(self):
+        self.shelters = []
+        self.requests_queue = []
+        self.assignments = []
 
     def add_shelter(self, shelter):
         self.shelters.append(shelter)
 
-    def add_requests(self, request):
+    def add_request(self, request):
         self.requests_queue.append(request)
 
     def view_shelters(self):
         for i in self.shelters:
-            i.show_info()
+            i.show_shelter()
 
     def view_requests(self):
         for i in self.requests_queue:
-            i.show_info()
+            i.show_request()
 
     def find_nearest_shelter(self, request):
         nearest_shelter = None
@@ -39,8 +40,12 @@ class EmergencySystem:
 
     def assign_shelter(self, request):
         nearest_shelter = self.find_nearest_shelter(request)
-        nearest_shelter.current_people+=request.people_count
-        self.assignments.append([nearest_shelter, request])
+        if nearest_shelter is None:
+            print("No available shelter")
+            return
+        else:
+            nearest_shelter.current_people+=request.people_count
+            self.assignments.append([nearest_shelter, request])
 
     def view_shelter_status(self):
         for shelter in self.shelters:

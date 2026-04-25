@@ -18,6 +18,7 @@ class Shelter:
     def remaining_capacity(self):
         return self.capacity - self.current_people
 
-    def show_info(self):
-        print(f"Shelter name:{self.name}\nShelter coordinates:{self.location}\nShelter capacity:{self.capacity}\n Shelter current people count:{self.current_people}")
+    def show_shelter(self):
+        print(f"Shelter name:{self.name}\nShelter coordinates:{self.location}\nShelter capacity:{self.capacity}\nShelter current people count:{self.current_people}")
+        print("---------")
 
