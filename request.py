@@ -35,7 +35,7 @@ class HelpRequest:
 
     #variable with calculates the overall priority level of a help request based on the crisis type, number of people, and inputted severity level
     priority_level = self.disaster_severity + types[self.danger_type] + get_person_severity(self.people_count)
-    return f"Crisis priority level: {priority_level}" #returns the priority level of the help request
+    return priority_level #returns the priority level of the help request
 
   #method which displays the all details of a help request: name, number of people, the crisis, the severity, and location
   def show_request(self):
