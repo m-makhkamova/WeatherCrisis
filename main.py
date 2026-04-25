@@ -55,6 +55,7 @@ while True:
             request = system.requests_queue.pop(0)
             system.assign_shelter(request)
 
+
     # OPTION 6
     elif choice == "6":
         system.view_shelter_status()

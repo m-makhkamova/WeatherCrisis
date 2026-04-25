@@ -18,6 +18,20 @@ class EmergencySystem:
         for i in self.requests_queue:
             i.show_request()
 
+    def view_assignments(self):
+        if len(self.assignments) == 0:
+            print("No assignments yet.")
+        else:
+            for assignment in self.assignments:
+                shelter = assignment[0]
+                request = assignment[1]
+
+                print(f"Request name: {request.name}")
+                print(f"People assigned: {request.people_count}")
+                print(f"Assigned shelter: {shelter.name}")
+                print(f"Shelter location: {shelter.location}")
+                print("------------------")
+
     def find_nearest_shelter(self, request):
         nearest_shelter = None
         shortest_distance = float('inf')
@@ -36,7 +50,7 @@ class EmergencySystem:
                     shortest_distance = distance
                     nearest_shelter = shelter
 
-            return nearest_shelter
+        return nearest_shelter
 
     def assign_shelter(self, request):
         nearest_shelter = self.find_nearest_shelter(request)
@@ -44,8 +58,9 @@ class EmergencySystem:
             print("No available shelter")
             return
         else:
-            nearest_shelter.current_people+=request.people_count
+            nearest_shelter.add_people(request.people_count)
             self.assignments.append([nearest_shelter, request])
+            print(f"{request.name} is assigned to {nearest_shelter.name}")
 
     def view_shelter_status(self):
         for shelter in self.shelters:
